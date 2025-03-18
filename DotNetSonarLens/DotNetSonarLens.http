@@ -1,0 +1,6 @@
+@DotNetSonarLens_HostAddress = http://localhost:5285
+
+GET {{DotNetSonarLens_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

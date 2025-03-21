@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetSonarLens.Controllers
 {
@@ -13,7 +13,7 @@ namespace DotNetSonarLens.Controllers
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger = null)
         {
             _logger = logger;
         }
@@ -28,6 +28,13 @@ namespace DotNetSonarLens.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        public string GetData(string input)
+        {
+            if (input == null) // Bug tiềm ẩn: không xử lý null đúng cách
+                return input.ToLower();
+            return "OK";
         }
     }
 }

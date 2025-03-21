@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="xunit.assert" Version="2.9.3" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.9.3" />
   </ItemGroup>
 
 </Project>

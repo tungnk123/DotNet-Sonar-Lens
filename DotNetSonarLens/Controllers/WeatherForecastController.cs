@@ -30,6 +30,7 @@ namespace DotNetSonarLens.Controllers
             .ToArray();
         }
 
+        [HttpGet("test", Name = "GetTestData")]
         public string GetData(string input)
         {
             if (input == null) // Bug tiềm ẩn: không xử lý null đúng cách

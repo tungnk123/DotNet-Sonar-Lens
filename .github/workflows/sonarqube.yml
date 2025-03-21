@@ -48,7 +48,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"tungnk123_DotNet-Sonar-Lens" /o:"tungnk123" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="coverage.opencover.xml"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"tungnk123_DotNet-Sonar-Lens" /o:"tungnk123" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="TestResults/coverage.opencover.xml"
+
+      - name: Restore NuGet Packages 
+        run: dotnet restore
 
       - name: Build Project
         run: dotnet build --no-restore

@@ -20,6 +20,12 @@ jobs:
         run: |
           dotnet tool update --global dotnet-sonarscanner
 
+      - name: Install Coverlet Console
+        shell: powershell
+        run: |
+          dotnet tool install --global coverlet.console
+          dotnet add test/MyTestProject.csproj package coverlet.collector
+
       - name: Start SonarQube Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -35,12 +41,8 @@ jobs:
 
       - name: Run Tests with Coverage
         run: |
-          dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=TestResults/coverage.opencover.xml
-
-      - name: Convert Coverage Report (if needed)
-        run: |
-          dotnet tool install --global dotnet-reportgenerator-globaltool
-          reportgenerator -reports:TestResults/coverage.opencover.xml -targetdir:TestResults/CoverageReport -reporttypes:SonarQube
+          dotnet test test/MyTestProject.csproj --collect:"XPlat Code Coverage" --results-directory TestResults/
+          reportgenerator -reports:TestResults/**/coverage.cobertura.xml -targetdir:TestResults/CoverageReport -reporttypes:SonarQube
 
       - name: Complete SonarQube Analysis
         env:

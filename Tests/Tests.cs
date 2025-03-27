@@ -9,6 +9,6 @@ public class Tests
     {
         var controller = new WeatherForecastController();
         var result = controller.GetData("test");
-        Assert.Equal("ok", result);
+        Assert.Equal("OK", result, true);
     }
 }

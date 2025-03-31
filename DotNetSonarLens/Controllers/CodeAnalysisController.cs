@@ -7,7 +7,7 @@ namespace DotNetSonarLens.Controllers
     [ApiController]
     public class CodeAnalysisController : ControllerBase
     {
-        [HttpGet("test", Name = "GetTestData")]
+        [HttpGet("Test", Name = "GetTestData")]
         public string GetData(string? input)
         {
             if (input == null) // Bug tiềm ẩn: không xử lý null đúng cách
@@ -15,5 +15,11 @@ namespace DotNetSonarLens.Controllers
             return "OK";
         }
 
+        [HttpGet("SQLInjection", Name = "GetQuerySQLInjection")]
+        public string GetQuery(string userInput)
+        {
+            return 
+                $"SELECT * FROM Users WHERE Name = '{userInput}'"; // SQL Injection
+        }
     }
 }

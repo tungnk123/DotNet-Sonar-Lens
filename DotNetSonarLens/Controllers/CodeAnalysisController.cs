@@ -21,5 +21,12 @@ namespace DotNetSonarLens.Controllers
             return 
                 $"SELECT * FROM Users WHERE Name = '{userInput}'"; // SQL Injection
         }
+
+        [HttpGet("Method1", Name = "GetSensitiveData1")]
+        public void Method1() { Console.WriteLine("Hello"); }
+
+        [HttpGet("Method2", Name = "GetSensitiveData2")]
+        public void Method2() { Console.WriteLine("Hello"); }
+
     }
 }
